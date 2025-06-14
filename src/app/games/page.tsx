@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -138,7 +137,7 @@ const Games = () => {
               </div>
             </div>
           ))}
-          
+
           {/* Slider Navigation Dots */}
           <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3">
             <div className="d-flex gap-2">
@@ -164,7 +163,7 @@ const Games = () => {
                 <i className="fas fa-gamepad me-2 text-primary"></i>
                 Game Library
               </h2>
-              
+
               {/* Filters */}
               <div className="row mb-4">
                 <div className="col-md-4 mb-3">

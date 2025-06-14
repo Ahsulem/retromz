@@ -12,6 +12,7 @@ export const useThemeAwareLoader = () => {
   const [progress, setProgress] = useState(0);
   const [loadingTitle, setLoadingTitle] = useState('Loading');
   const [loadingText, setLoadingText] = useState('Initializing...');
+  const [theme, setTheme] = useState('dark');
 
   const progressTexts = [
     'Initializing...',
@@ -27,6 +28,7 @@ export const useThemeAwareLoader = () => {
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
     document.documentElement.setAttribute('data-bs-theme', initialTheme);
   }, []);
 
@@ -87,6 +89,13 @@ export const useThemeAwareLoader = () => {
     setIsLoading(false);
   }, []);
 
+  const toggleTheme = useCallback(() => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+  }, [theme]);
+
   const onDataLoad = async (title: string = 'Data', options: LoadingOptions = {}) => {
     const { duration = 2000, showProgress = true } = options;
 
@@ -119,6 +128,8 @@ export const useThemeAwareLoader = () => {
     progress,
     loadingTitle,
     loadingText,
+    theme,
+    toggleTheme,
     showLoading,
     hideLoading,
     onDataLoad,

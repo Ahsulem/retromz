@@ -1,0 +1,116 @@
+
+/* Games Page Styles */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  transition: all 1s ease-in-out;
+}
+
+.game-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.game-card .card-img-top {
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.bg-gradient-to-t {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+}
+
+.transition-all {
+  transition: all 1s ease-in-out;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.scale-95 {
+  transform: scale(0.95);
+}
+
+.scale-100 {
+  transform: scale(1);
+}
+
+.opacity-30 {
+  opacity: 0.3;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Filter styling */
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Badge styling */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5em 0.75em;
+  border-radius: 6px;
+}
+
+/* Button styling */
+.btn {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 40vh !important;
+  }
+  
+  .display-4 {
+    font-size: 2rem !important;
+  }
+  
+  .hero-slider .position-absolute.bottom-0 {
+    padding: 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-slider {
+    height: 35vh !important;
+  }
+  
+  .hero-slider .position-absolute.bottom-0 {
+    padding: 1rem !important;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}

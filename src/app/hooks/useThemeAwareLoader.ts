@@ -87,17 +87,32 @@ export const useThemeAwareLoader = () => {
     setIsLoading(false);
   }, []);
 
-  const onDataLoad = useCallback(
-    (dataType = 'Data') => {
-      return showLoading({
-        title: `Loading ${dataType}`,
-        text: 'Fetching from server...',
-        duration: 2000,
-        showProgress: true,
-      });
-    },
-    [showLoading]
-  );
+  const onDataLoad = async (title: string = 'Data', options: LoadingOptions = {}) => {
+    const { duration = 2000, showProgress = true } = options;
+
+    setLoadingTitle(`Loading ${title}`);
+    setIsLoading(true);
+    setProgress(0);
+
+    return new Promise<void>((resolve) => {
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          const newProgress = prev + 10;
+          const textIndex = Math.floor((newProgress / 100) * (progressTexts.length - 1));
+          setLoadingText(progressTexts[textIndex] || progressTexts[progressTexts.length - 1]);
+
+          if (newProgress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              setIsLoading(false);
+              resolve();
+            }, 500);
+          }
+          return Math.min(newProgress, 100);
+        });
+      }, duration / 10);
+    });
+  };
 
   return {
     isLoading,

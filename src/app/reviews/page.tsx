@@ -21,6 +21,7 @@ export default function ReviewsPage() {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   useEffect(() => {
     const initializePage = async () => {
@@ -81,7 +82,13 @@ export default function ReviewsPage() {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-    if (!user || !selectedGame) return;
+    
+    if (!user) {
+      setShowSignInModal(true);
+      return;
+    }
+    
+    if (!selectedGame) return;
 
     setIsSubmitting(true);
     try {
@@ -133,18 +140,16 @@ export default function ReviewsPage() {
           <p className="lead">Share your thoughts and read what others think about retro games</p>
         </div>
 
-        {user && (
-          <div className="mb-5">
-            <button 
-              className="btn btn-primary"
-              onClick={() => setShowReviewForm(!showReviewForm)}
-            >
-              <i className="fas fa-plus me-2"></i>Add a Review
-            </button>
-          </div>
-        )}
+        <div className="mb-5">
+          <button 
+            className="btn btn-primary"
+            onClick={() => setShowReviewForm(!showReviewForm)}
+          >
+            <i className="fas fa-plus me-2"></i>Add a Review
+          </button>
+        </div>
 
-        {showReviewForm && user && (
+        {showReviewForm && (
           <div className="card mb-5">
             <div className="card-header">
               <h5 className="mb-0"><i className="fas fa-edit me-2"></i>Write a Review</h5>
@@ -216,12 +221,7 @@ export default function ReviewsPage() {
           </div>
         )}
 
-        {!user && (
-          <div className="alert alert-info mb-5">
-            <i className="fas fa-info-circle me-2"></i>
-            <a href="/login" className="alert-link">Sign in</a> to write reviews and share your thoughts about games.
-          </div>
-        )}
+        
 
         <div className="row">
           {reviews.length === 0 ? (
@@ -262,6 +262,47 @@ export default function ReviewsPage() {
         </div>
       </div>
       <Footer />
+
+      {/* Sign In Modal */}
+      {showSignInModal && (
+        <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">
+                  <i className="fas fa-sign-in-alt me-2"></i>Sign In Required
+                </h5>
+                <button 
+                  type="button" 
+                  className="btn-close" 
+                  onClick={() => setShowSignInModal(false)}
+                ></button>
+              </div>
+              <div className="modal-body text-center">
+                <i className="fas fa-lock fa-3x text-primary mb-3"></i>
+                <p className="mb-4">You need to sign in to submit a review.</p>
+                <div className="d-flex gap-3 justify-content-center">
+                  <a href="/login" className="btn btn-primary">
+                    <i className="fas fa-sign-in-alt me-2"></i>Sign In
+                  </a>
+                  <a href="/register" className="btn btn-outline-primary">
+                    <i className="fas fa-user-plus me-2"></i>Sign Up
+                  </a>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  onClick={() => setShowSignInModal(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
       <style jsx>{`
         .star-interactive:hover {

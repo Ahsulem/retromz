@@ -41,8 +41,6 @@ export default function Footer() {
               <li><Link href="/reviews" className="nav-link">Reviews</Link></li>
               <li><Link href="/about" className="nav-link">About</Link></li>
               <li><Link href="/requests" className="nav-link">Requests</Link></li>
-              <li><Link href="/privacy" className="nav-link">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="nav-link">Terms of Service</Link></li>
             </ul>
           </div>
           <div className="col-md-2 mb-4 mb-md-0">

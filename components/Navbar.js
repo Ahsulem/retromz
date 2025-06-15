@@ -119,26 +119,6 @@ export default function Navbar() {
                 <i className="fas"></i>About
               </Link>
             </li>
-             <li className="nav-item">
-              <Link href="/leaderboards" className="nav-link">
-                <i className="fas fa-trophy me-1"></i>Leaderboards
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/rom-hacks" className="nav-link">
-                <i className="fas fa-code-branch me-1"></i>ROM Hacks
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/streamers" className="nav-link">
-                <i className="fas fa-video me-1"></i>Streamers
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/music" className="nav-link">
-                <i className="fas fa-music me-1"></i>Music
-              </Link>
-            </li>
           </ul>
           <div className="d-flex align-items-center gap-3">
             <div className="d-flex">

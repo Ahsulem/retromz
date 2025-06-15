@@ -11,11 +11,9 @@ const Leaderboards = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-      setTheme(initialTheme);
-      document.documentElement.setAttribute('data-bs-theme', initialTheme);
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-bs-theme', savedTheme);
     }
   }, []);
 
@@ -29,7 +27,7 @@ const Leaderboards = () => {
   return (
     <>
       <ScrollProgressBar />
-      <Navbar theme={theme} setTheme={toggleTheme} />
+      <Navbar />
       
       <div className="container py-5">
         <div className="text-center mb-5">

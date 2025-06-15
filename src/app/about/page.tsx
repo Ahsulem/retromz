@@ -117,7 +117,7 @@ export default function AboutPage() {
                     <div className="card founder-card">
                       <div className="founder-image-container position-relative">
                         <img 
-                          src="/images/ahmad-pixel-art.png" 
+                          src="https://replit.com/@syphon786/retromz-1#public/images/ahmad-pixel-art.png" 
                           alt="Ahmad Suleman"
                           className="card-img-top founder-image"
                         />
@@ -148,7 +148,7 @@ export default function AboutPage() {
                     <div className="card founder-card">
                       <div className="founder-image-container position-relative">
                         <img 
-                          src="/images/aman-pixel-art.png" 
+                          src="https://replit.com/@syphon786/retromz-1#public/images/aman-pixel-art.png" 
                           alt="Aman Malik"
                           className="card-img-top founder-image"
                         />

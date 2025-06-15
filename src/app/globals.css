@@ -232,7 +232,13 @@ p, .lead, li, a:not(.nav-link), .text-muted {
 }
 
 .hero {
-  background: var(--hero-bg);
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/images/retro-gaming-collage.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
   padding: 120px 0;
   text-align: center;
   margin-bottom: 50px;

@@ -167,7 +167,7 @@ export default function HomePage() {
             <div className="row mb-4">
               {gamingSystems.map((system) => (
                 <div key={system.name} className="col-6 col-md-4">
-                  <Link href={`/consoles/${system.shortName}`} passHref className="text-decoration-none">
+                  <Link href={`/games?system=${system.shortName}`} passHref className="text-decoration-none">
                     <div className="card category-card" title={system.tooltip}>
                       <div className="card-body text-center">
                         <img

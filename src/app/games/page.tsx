@@ -18,6 +18,17 @@ const Games = () => {
   const [theme, setTheme] = useState('dark');
   const [isLoading, setIsLoading] = useState(true);
 
+  // Get system from URL parameters
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const systemParam = urlParams.get('system');
+      if (systemParam) {
+        setSelectedSystem(systemParam);
+      }
+    }
+  }, []);
+
   // Get popular games for slider (you can modify this logic)
   const popularGames = Object.entries(gamesData).slice(0, 3).map(([key, game]) => ({
     id: key,

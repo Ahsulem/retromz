@@ -112,7 +112,7 @@ export default function AboutPage() {
                 </p>
 
                 <h3 className="mb-4 mt-5">Meet Our Founders</h3>
-                <div className="row mb-5">
+                <div className="row mb-3">
                   <div className="col-md-6 mb-4">
                     <div className="card founder-card">
                       <div className="founder-image-container position-relative">
@@ -136,11 +136,6 @@ export default function AboutPage() {
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="card-body text-center">
-                        <h5 className="card-title">Ahmad Suleman</h5>
-                        <p className="founder-title">Founder</p>
-                        <p className="text-muted">(SP23-BSE-002)</p>
                       </div>
                     </div>
                   </div>
@@ -168,12 +163,20 @@ export default function AboutPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="card-body text-center">
-                        <h5 className="card-title">Aman Malik</h5>
-                        <p className="founder-title">Founder</p>
-                        <p className="text-muted">(SP23-BSE-005)</p>
-                      </div>
                     </div>
+                  </div>
+                </div>
+                
+                <div className="row mb-5">
+                  <div className="col-md-6 text-center">
+                    <h5 className="card-title">Ahmad Suleman</h5>
+                    <p className="founder-title">Founder</p>
+                    <p className="text-muted">(SP23-BSE-002)</p>
+                  </div>
+                  <div className="col-md-6 text-center">
+                    <h5 className="card-title">Aman Malik</h5>
+                    <p className="founder-title">Founder</p>
+                    <p className="text-muted">(SP23-BSE-005)</p>
                   </div>
                 </div>
 

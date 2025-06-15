@@ -142,7 +142,7 @@ export default function AboutPage() {
                     <div className="card founder-card">
                       <div className="founder-image-container position-relative">
                         <img 
-                          src="https://via.placeholder.com/300x300/1a1a2e/ffffff?text=AM" 
+                          src="/images/aman-pixel-art.png" 
                           alt="Aman Malik"
                           className="card-img-top founder-image"
                         />

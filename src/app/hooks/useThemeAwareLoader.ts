@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useCallback } from 'react';
 
 interface LoadingOptions {
@@ -12,6 +13,7 @@ export const useThemeAwareLoader = () => {
   const [progress, setProgress] = useState(0);
   const [loadingTitle, setLoadingTitle] = useState('Loading');
   const [loadingText, setLoadingText] = useState('Initializing...');
+  const [hasLoadedBefore, setHasLoadedBefore] = useState(false);
 
   const progressTexts = [
     'Initializing...',
@@ -21,6 +23,14 @@ export const useThemeAwareLoader = () => {
     'Almost ready...',
     'Complete!',
   ];
+
+  // Check if we've loaded before on component mount
+  useEffect(() => {
+    const hasLoaded = localStorage.getItem('retromz-has-loaded');
+    if (hasLoaded === 'true') {
+      setHasLoadedBefore(true);
+    }
+  }, []);
 
   // Initialize theme from localStorage or system preference
   useEffect(() => {
@@ -68,6 +78,11 @@ export const useThemeAwareLoader = () => {
 
   const showLoading = useCallback(
     async ({ title = 'Loading', text = 'Please wait...', duration = 2000, showProgress = true }: LoadingOptions = {}) => {
+      // Don't show loading if we've already loaded before
+      if (hasLoadedBefore) {
+        return;
+      }
+
       setLoadingTitle(title);
       setLoadingText(text);
       setProgress(0);
@@ -79,8 +94,12 @@ export const useThemeAwareLoader = () => {
 
       await new Promise((resolve) => setTimeout(resolve, duration));
       setIsLoading(false);
+      
+      // Mark as loaded in localStorage
+      localStorage.setItem('retromz-has-loaded', 'true');
+      setHasLoadedBefore(true);
     },
-    [animateProgress]
+    [animateProgress, hasLoadedBefore]
   );
 
   const hideLoading = useCallback(() => {
@@ -88,6 +107,11 @@ export const useThemeAwareLoader = () => {
   }, []);
 
   const onDataLoad = async (title: string = 'Data', options: LoadingOptions = {}) => {
+    // Don't show loading if we've already loaded before
+    if (hasLoadedBefore) {
+      return Promise.resolve();
+    }
+
     const { duration = 2000, showProgress = true } = options;
 
     setLoadingTitle(`Loading ${title}`);
@@ -105,6 +129,9 @@ export const useThemeAwareLoader = () => {
             clearInterval(interval);
             setTimeout(() => {
               setIsLoading(false);
+              // Mark as loaded in localStorage
+              localStorage.setItem('retromz-has-loaded', 'true');
+              setHasLoadedBefore(true);
               resolve();
             }, 500);
           }
@@ -122,5 +149,6 @@ export const useThemeAwareLoader = () => {
     showLoading,
     hideLoading,
     onDataLoad,
+    hasLoadedBefore,
   };
 };

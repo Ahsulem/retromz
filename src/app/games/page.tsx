@@ -6,15 +6,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import { useThemeAwareLoader } from '../hooks/useThemeAwareLoader';
 import gamesData from '../../../public/games.json';
 
 const Games = () => {
-  const { isLoading, progress, loadingTitle, loadingText, theme, toggleTheme, onDataLoad } = useThemeAwareLoader();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedSystem, setSelectedSystem] = useState('All');
+  const [theme, setTheme] = useState('dark');
 
   // Get popular games for slider (you can modify this logic)
   const popularGames = Object.entries(gamesData).slice(0, 3).map(([key, game]) => ({
@@ -31,18 +30,15 @@ const Games = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('bootstrap/dist/js/bootstrap.bundle.min.js');
+      
+      // Initialize theme from localStorage or system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-bs-theme', initialTheme);
     }
-
-    const fetchData = async () => {
-      try {
-        await onDataLoad('Games Information');
-      } catch (err) {
-        console.error('Error loading games data:', err);
-      }
-    };
-
-    fetchData();
-  }, [onDataLoad]);
+  }, []);
 
   // Auto-slide functionality
   useEffect(() => {
@@ -65,20 +61,12 @@ const Games = () => {
   const genres = ['All', ...new Set(allGames.map(game => game.genre))];
   const systems = ['All', ...new Set(allGames.map(game => game.system))];
 
-  if (isLoading) {
-    return (
-      <div className={`loading-overlay ${isLoading ? '' : 'hidden'}`} role="alert" aria-label="Loading games information">
-        <div className="loading-content">
-          <h1 className="loading-title">{loadingTitle}</h1>
-          <div className="loading-spinner"></div>
-          <div className="loading-progress">
-            <div className="loading-progress-bar" style={{ width: `${progress}%` }}></div>
-          </div>
-          <p className="loading-text">{loadingText}</p>
-        </div>
-      </div>
-    );
-  }
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+  };
 
   return (
     <>

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer';
+import ScrollProgressBar from '../../components/ScrollProgressBar';
 import { auth, db } from '../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
@@ -127,6 +128,7 @@ export default function HomePage() {
 
   return (
     <>
+      <ScrollProgressBar />
       <Navbar theme={theme} setTheme={toggleTheme} user={user} />
       <section className="hero">
         <div className="container">

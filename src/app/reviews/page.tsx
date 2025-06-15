@@ -1,47 +1,51 @@
-
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import { useThemeAwareLoader } from '../hooks/useThemeAwareLoader';
+import ScrollProgressBar from '../../../components/ScrollProgressBar';
+import PacmanLoader from '../../../components/PacmanLoader';
 
 export default function ReviewsPage() {
-  const { isLoading, progress, loadingTitle, loadingText, theme, toggleTheme, onDataLoad } = useThemeAwareLoader();
+  const [theme, setTheme] = useState('dark');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('bootstrap/dist/js/bootstrap.bundle.min.js');
-    }
+    const initializePage = async () => {
+      if (typeof window !== 'undefined') {
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        setTheme(initialTheme);
+        document.documentElement.setAttribute('data-bs-theme', initialTheme);
 
-    const fetchData = async () => {
-      try {
-        await onDataLoad('Reviews Information');
-      } catch (err) {
-        console.error('Error loading reviews data:', err);
+        // Load bootstrap
+        await import('bootstrap/dist/js/bootstrap.bundle.min.js');
+
+        // Simulate loading time
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setIsLoading(false);
       }
     };
 
-    fetchData();
-  }, [onDataLoad]);
+    initializePage();
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+  };
 
   if (isLoading) {
-    return (
-      <div className={`loading-overlay ${isLoading ? '' : 'hidden'}`} role="alert" aria-label="Loading reviews information">
-        <div className="loading-content">
-          <h1 className="loading-title">{loadingTitle}</h1>
-          <div className="loading-spinner"></div>
-          <div className="loading-progress">
-            <div className="loading-progress-bar" style={{ width: `${progress}%` }}></div>
-          </div>
-          <p className="loading-text">{loadingText}</p>
-        </div>
-      </div>
-    );
+    return <PacmanLoader message="Loading Reviews" />;
   }
 
   return (
     <>
+      <ScrollProgressBar />
       <Navbar theme={theme} setTheme={toggleTheme} />
       <div className="container py-5">
         <div className="hero text-center mb-5">

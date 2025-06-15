@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import PacmanLoader from '../../../components/PacmanLoader';
+import ScrollProgressBar from '../../../components/ScrollProgressBar';
 import gamesData from '../../../public/games.json';
 
 const Games = () => {
@@ -14,6 +16,7 @@ const Games = () => {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedSystem, setSelectedSystem] = useState('All');
   const [theme, setTheme] = useState('dark');
+  const [isLoading, setIsLoading] = useState(true);
 
   // Get popular games for slider (you can modify this logic)
   const popularGames = Object.entries(gamesData).slice(0, 3).map(([key, game]) => ({
@@ -28,16 +31,25 @@ const Games = () => {
   }));
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('bootstrap/dist/js/bootstrap.bundle.min.js');
-      
-      // Initialize theme from localStorage or system preference
-      const savedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-      setTheme(initialTheme);
-      document.documentElement.setAttribute('data-bs-theme', initialTheme);
-    }
+    const initializePage = async () => {
+      if (typeof window !== 'undefined') {
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        setTheme(initialTheme);
+        document.documentElement.setAttribute('data-bs-theme', initialTheme);
+
+        // Load bootstrap
+        await import('bootstrap/dist/js/bootstrap.bundle.min.js');
+        
+        // Simulate loading time
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setIsLoading(false);
+      }
+    };
+
+    initializePage();
   }, []);
 
   // Auto-slide functionality
@@ -68,8 +80,13 @@ const Games = () => {
     document.documentElement.setAttribute('data-bs-theme', newTheme);
   };
 
+  if (isLoading) {
+    return <PacmanLoader message="Loading Games" />;
+  }
+
   return (
     <>
+      <ScrollProgressBar />
       <Navbar theme={theme} setTheme={toggleTheme} />
       <div className="container-fluid p-0">
         {/* Hero Slider Section */}

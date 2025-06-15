@@ -117,24 +117,30 @@ export default function AboutPage() {
                     <div className="card founder-card">
                       <div className="founder-image-container position-relative">
                         <img 
-                          src="https://via.placeholder.com/300x300/1a1a2e/ffffff?text=AS" 
+                          src="/images/ahmad-pixel-art.png" 
                           alt="Ahmad Suleman"
                           className="card-img-top founder-image"
                         />
                         <div className="founder-overlay">
-                          <div className="founder-quote">"Let it RIP!!"</div>
+                          <div className="founder-quote">
+                            "Let it RIP!!"
+                            <div className="mt-3">
+                              <a 
+                                href="https://github.com/Ahsulem" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="btn btn-dark github-btn"
+                              >
+                                <i className="fab fa-github me-2"></i>View GitHub
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="card-body text-center">
-                        <h5 className="card-title">Ahmad Suleman<br/>Founder<br/>(SP23-BSE-002)</h5>
-                        <a 
-                          href="https://github.com/Ahsulem" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="btn btn-dark github-btn"
-                        >
-                          <i className="fab fa-github me-2"></i>View GitHub
-                        </a>
+                        <h5 className="card-title">Ahmad Suleman</h5>
+                        <p className="founder-title">Founder</p>
+                        <p className="text-muted">(SP23-BSE-002)</p>
                       </div>
                     </div>
                   </div>
@@ -147,19 +153,25 @@ export default function AboutPage() {
                           className="card-img-top founder-image"
                         />
                         <div className="founder-overlay">
-                          <div className="founder-quote">"RETROMZ -- bridging the golden age with the present"</div>
+                          <div className="founder-quote">
+                            "RETROMZ -- bridging the golden age with the present"
+                            <div className="mt-3">
+                              <a 
+                                href="https://github.com/Umineko404" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="btn btn-dark github-btn"
+                              >
+                                <i className="fab fa-github me-2"></i>View GitHub
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="card-body text-center">
-                        <h5 className="card-title">Aman Malik<br/>Founder<br/>(SP23-BSE-005)</h5>
-                        <a 
-                          href="https://github.com/Umineko404" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="btn btn-dark github-btn"
-                        >
-                          <i className="fab fa-github me-2"></i>View GitHub
-                        </a>
+                        <h5 className="card-title">Aman Malik</h5>
+                        <p className="founder-title">Founder</p>
+                        <p className="text-muted">(SP23-BSE-005)</p>
                       </div>
                     </div>
                   </div>

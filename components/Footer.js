@@ -38,17 +38,20 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li><Link href="/" className="nav-link">Home</Link></li>
               <li><Link href="/games" className="nav-link">Games</Link></li>
-              <li><Link href="/forum" className="nav-link">Forum</Link></li>
+              <li><Link href="/reviews" className="nav-link">Reviews</Link></li>
               <li><Link href="/about" className="nav-link">About</Link></li>
+              <li><Link href="/requests" className="nav-link">Requests</Link></li>
+              <li><Link href="/privacy" className="nav-link">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="nav-link">Terms of Service</Link></li>
             </ul>
           </div>
           <div className="col-md-2 mb-4 mb-md-0">
             <h6>Game Systems</h6>
             <ul className="list-unstyled">
-              <li><Link href="/games/nes" className="nav-link">NES</Link></li>
+              <li><Link href="/games/super-mario-bros" className="nav-link">NES</Link></li>
               <li><Link href="/games/snes" className="nav-link">SNES</Link></li>
+              <li><Link href="/games/pokemon-ruby" className="nav-link">GBA</Link></li>
               <li><Link href="/games/n64" className="nav-link">N64</Link></li>
-              <li><Link href="/games/gba" className="nav-link">GBA</Link></li>
             </ul>
           </div>
           <div className="col-md-4">

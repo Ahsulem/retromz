@@ -111,6 +111,60 @@ export default function AboutPage() {
                   are not just entertainment, but cultural artifacts that deserve to be preserved and celebrated.
                 </p>
 
+                <h3 className="mb-4 mt-5">Meet Our Founders</h3>
+                <div className="row mb-5">
+                  <div className="col-md-6 mb-4">
+                    <div className="card founder-card">
+                      <div className="founder-image-container position-relative">
+                        <img 
+                          src="https://via.placeholder.com/300x300/1a1a2e/ffffff?text=AS" 
+                          alt="Ahmad Suleman"
+                          className="card-img-top founder-image"
+                        />
+                        <div className="founder-overlay">
+                          <div className="founder-quote">"Let it RIP!!"</div>
+                        </div>
+                      </div>
+                      <div className="card-body text-center">
+                        <h5 className="card-title">Ahmad Suleman<br/>Founder<br/>(SP23-BSE-002)</h5>
+                        <a 
+                          href="https://github.com/Ahsulem" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="btn btn-dark github-btn"
+                        >
+                          <i className="fab fa-github me-2"></i>View GitHub
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6 mb-4">
+                    <div className="card founder-card">
+                      <div className="founder-image-container position-relative">
+                        <img 
+                          src="https://via.placeholder.com/300x300/1a1a2e/ffffff?text=AM" 
+                          alt="Aman Malik"
+                          className="card-img-top founder-image"
+                        />
+                        <div className="founder-overlay">
+                          <div className="founder-quote">"RETROMZ -- bridging the golden age with the present"</div>
+                        </div>
+                      </div>
+                      <div className="card-body text-center">
+                        <h5 className="card-title">Aman Malik<br/>Founder<br/>(SP23-BSE-005)</h5>
+                        <a 
+                          href="https://github.com/Umineko404" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="btn btn-dark github-btn"
+                        >
+                          <i className="fab fa-github me-2"></i>View GitHub
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="text-center mt-5">
                   <h4 className="mb-3">Join Our Community</h4>
                   <p>Ready to dive into the world of retro gaming?</p>
